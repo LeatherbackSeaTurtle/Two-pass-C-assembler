@@ -1,0 +1,24 @@
+.global a, b, c
+.extern d
+
+.text
+a: addw r0, 10
+movw r5, a
+pushw b
+
+.data
+b: .skip 5
+.word b, a
+.byte 10, c, -19
+e: .equ f, 20
+.align 4
+jne $kraj
+.equ g, 59
+halt
+
+.section sek
+c: addb [r7l], 5
+mul r2, [r1]
+kraj: ret
+
+.end

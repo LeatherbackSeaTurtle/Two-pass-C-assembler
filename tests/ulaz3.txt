@@ -1,0 +1,22 @@
+.global lab1
+
+.text
+pocetak:	movb [r4l], sph
+		divb r2h, 2
+		andb r1l[lab1], 7
+		testb *116, 0
+		
+.bss
+		.skip 3
+ac_dc:		.byte 7
+		.word 96
+		jmp $lab1
+
+.section etf
+lab1:		orb spl, &pocetak
+		cmpb spl, 0
+		jgt $pocetak
+		pushb sph
+		iret
+
+.end

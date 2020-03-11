@@ -1,0 +1,22 @@
+.extern skocko
+
+.text
+	xchgw [r3], r6[25]
+lab:	subw r2, 32
+	xorb r0l, r6h[lab]
+pab:	notw r7
+	cmpw r3, 0
+	jeq $pab
+
+.section kalimero, 111
+	pushw &lab
+	movw r3, 7
+	cmpw r3, 0
+	jeq $dalje
+petlja:	subw r3, 1
+	cmpw r3, 0
+	jeqw $dalje
+	jmp $petlja
+dalje:	call $skocko
+
+.end
